@@ -95,7 +95,7 @@ export class QuestCalibrationWebXRClient {
     }
 
     /**
-     * Sets up an interval to send info every 100 ms
+     * Sets up an interval to send info every 100 ms, should be changed later on to calling sendFrame() whenever there is new information from the WebXR API
      */
     private startSendFrame() {
         this.interval = window.setInterval(()=>{
