@@ -1,0 +1,15 @@
+#input {
+    width: 100%
+}
+#address {
+    width: 100%;
+}
+#addressCell {
+    padding-right: 10px;
+}
+#connectButtonCell {
+    width: 20px;
+}
+#connectButton {
+    width: 100%;
+}

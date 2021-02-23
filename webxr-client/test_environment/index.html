@@ -2,8 +2,15 @@
 <html>
 <head>
     <title>Quest Calibration WebXR Client Test</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <table id="input">
+        <td id="addressCell"><input type="text" id="address" placeholder="dummy"></td>
+        <td id="connectButtonCell"><input type="button" id="connectButton" value="Connect"></td>
+    </table>
+    <div id="dataDisplay"></div>
+
     <script src="../build/QuestCalibrationClient.js"></script>
     <script src="app.js"></script>
 </body>
