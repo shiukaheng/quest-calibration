@@ -1,4 +1,5 @@
 # MultiQuest
+<img src="https://i.imgur.com/PgiklaT.jpeg" width="100" height="100">
 MultiQuest is an extendible framework used for creating multiplayer arena-scale experiences with the Oculus Quest, which currently does not support such experiences natively. It uses external cameras and ARUCO markers to allow different headsets to synchrnoize their coordinate spaces.
 
 This project is currently a work in progress.
