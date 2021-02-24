@@ -12,7 +12,7 @@ function connectTo(address) {
     try {
         console
         client = new QuestCalibrationClient.QuestCalibrationWebXRClient(address)
-        client.connect().then(()=>{console.log(`Connected to new address: ${client.serverUrl}`)})
+        client.connect().then(()=>{console.log(`Connected to new address: ${client.serverUrl}`); connectButton.disabled = false}).catch((err)=>{console.error(err); connectButton.disabled = false})
         client.addCallback((data)=>{
         dataDisplay.innerText = JSON.stringify(data, null, 2)
         })
@@ -31,5 +31,6 @@ connectButton.onclick = () => {
     } else {
         connectTo(address.value)
     }
+    connectButton.disabled = true
 }
 
