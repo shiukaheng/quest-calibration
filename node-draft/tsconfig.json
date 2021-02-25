@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "outDir": "./build/",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "module": "CommonJS",
+        "target": "es2015"
+    },
+    "lib": [
+        "ES5",
+        "ES2015",
+        "DOM",
+        "ES2016"
+    ]
+}
