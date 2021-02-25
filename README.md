@@ -10,13 +10,13 @@
 
 This project is currently a work in progress.
 
-## Todo
+## Todo 📃
 - [ ] Software design
 - [ ] Main server - communicates between clients and cameras and calibrate 
 - [ ] Tracker client - spots headsets
 - [ ] WebXR client - allows calibration on WebXR powered experiences
 - [ ] Hand-eye calibration - compensate for difference between marker and device origin
-## Maybe
+## Maybe 🤔
 - [ ] Multi-marker support
 - [ ] Extend support for native Oculus Quest experiences
 - [ ] Extend support for different headsets / AR devices
