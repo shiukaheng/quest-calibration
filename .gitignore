@@ -2,3 +2,4 @@
 /webxr-client/build
 /server/node_modules
 /node-draft/node_modules
+/node-draft/build
