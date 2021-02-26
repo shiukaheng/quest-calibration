@@ -1,6 +1,6 @@
 import {Connection} from "./Connection"
 import tsm = require('@kdh/tsm')
-import {bfsArenaNode} from "./Utilities"
+import {searchPath} from "./Utilities"
 
 export class ArenaNode {
     private connections: Set<Connection> // List of bi-directional connections with node
@@ -44,6 +44,6 @@ export class ArenaNode {
         this.connections.delete(connection)
     }
     pathsTo(node: ArenaNode) {
-        return bfsArenaNode(this, node)
+        return searchPath(this, node)
     }
 }

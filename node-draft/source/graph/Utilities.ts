@@ -4,10 +4,15 @@ import {Connection} from "./Connection"
 import Collections = require("typescript-collections")
 
 /***
- * Searches for all paths from source node to destination node, todo: maybe 
+ * Searches for all paths from source node to destination node
+ * @todo Test and/or rewrite! This may be an invalid implementation, and even if it is.. this may not be the best algorithm either! Search: Finding all paths from source to destination in an undirected graph.
  */
-export function bfsArenaNode(sourceNode: ArenaNode, destNode: ArenaNode, maxPaths: number = Infinity): Path[] {
-    var visited: Map<ArenaNode, ArenaNode|null> = new Map() // If node exists in map as key, it is explored. The value is the parent node, but if it is itself, means it is starting node. If it is null, it is because there are multiple parents, which only happen for the destination node. Used for finding path.
+export function searchPath(sourceNode: ArenaNode, destNode: ArenaNode, maxPaths: number = Infinity): Path[] {
+    var visited: Map<ArenaNode, ArenaNode|null> = new Map() 
+    // If node exists in map as key, it is explored. 
+    // The value is the parent node, but if it is itself, means it is starting node. 
+    // If it is null, it is because there are multiple parents, which only happen for the destination node. Used for finding path.
+    // But... is it not possible for one node to have two parents?
     var queue: Collections.Queue<ArenaNode> = new Collections.Queue()
     var paths: Path[] = []
 
