@@ -16,16 +16,22 @@ export function searchPath(sourceNode: ArenaNode, destNode: ArenaNode, maxPaths:
     var queue: Collections.Queue<ArenaNode> = new Collections.Queue()
     var paths: Path[] = []
 
-    function traceback(node: ArenaNode, visited: Map<ArenaNode, ArenaNode|null>) {
-        if (!(visited.has(node))) {
-            throw "node not part of path"
-        } else if (visited.get(node)===node) {
-            return [node]
-        } else if (visited.get(node)===null) {
-            throw "traceback cannot be performed on destination node"
-        } else {
-            return traceback(visited.get(node), visited).concat([node])
+    function getPathArguments(destNode: ArenaNode, toDestNode: ArenaNode): [ArenaNode[], Connection[]] {
+        var nodes = []
+        var connections = []
+        var currentNode = toDestNode
+        while (visited.get(currentNode)!==currentNode) { // As long as not source node
+            var parentNode = visited.get(currentNode)
+            nodes.push(currentNode)
+            connections.push(currentNode.adjacentConnectionTo(parentNode))
+            currentNode = visited.get(currentNode)
         }
+        nodes.push(currentNode)
+        nodes = nodes.reverse()
+        connections = connections.reverse()
+        nodes.push(destNode)
+        connections.push(destNode.adjacentConnectionTo(toDestNode))
+        return [nodes, connections]
     }
 
     queue.enqueue(sourceNode)
@@ -33,10 +39,10 @@ export function searchPath(sourceNode: ArenaNode, destNode: ArenaNode, maxPaths:
     visited.set(destNode, null)
     while (!queue.isEmpty()&&(paths.length<maxPaths)) {
         var node = queue.dequeue()
-        node.connectedNodes.forEach((childNode)=>{
+        node.adjacentNodes.forEach((childNode)=>{
             if (childNode===destNode) {
                 // Node must be connected to source (since it is accessible from the source) and destination (which is one of its child node)
-                paths.push(new Path(...(traceback(node, visited).concat([destNode]))))
+                paths.push(new Path(...getPathArguments(destNode, node)))
             }
             if (!(visited.has(childNode))) {
                 queue.enqueue(childNode)

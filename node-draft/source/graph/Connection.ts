@@ -1,6 +1,6 @@
 import {ArenaNode} from "./ArenaNode"
 import tsm = require('@kdh/tsm')
-
+import util = require("util")
 /**
  * Class that defines a directly observered transformation between two nodes (a.k.a. not inferred from two connected nodes)
  */
@@ -120,5 +120,8 @@ export class Connection {
     }
     destroy() {
         this.removeSelfFromNodes()
+    }
+    [util.inspect.custom](depth, opts) {
+        return `Connection(${this.sourceNode.name+" -> "+this.destNode.name})`
     }
 }

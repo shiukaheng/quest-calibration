@@ -1,6 +1,7 @@
 import {Connection} from "./Connection"
 import tsm = require('@kdh/tsm')
 import {searchPath} from "./Utilities"
+import util = require("util")
 
 export class ArenaNode {
     private connections: Set<Connection> // List of bi-directional connections with node
@@ -18,7 +19,20 @@ export class ArenaNode {
             return null
         }
     }
-    get connectedNodes(): ArenaNode[] {
+    adjacentConnectionTo(destination: ArenaNode) {
+        var returnNode: Connection
+        this.connections.forEach((connection)=>{
+            if (connection.spouse(this)===destination) {
+                returnNode = connection
+            }
+        })
+        if (returnNode === undefined) {
+            return null
+        } else {
+            return returnNode
+        }
+    }
+    get adjacentNodes(): ArenaNode[] {
         var nodes = []
         this.connections.forEach((connection)=>{
             nodes.push(connection.spouse(this))
@@ -45,5 +59,8 @@ export class ArenaNode {
     }
     pathsTo(node: ArenaNode) {
         return searchPath(this, node)
+    }
+    [util.inspect.custom](depth, opts) {
+        return `Node(${this.name})`
     }
 }
